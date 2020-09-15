@@ -11,5 +11,12 @@
 
     <artifactId>gmall-api</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.jiangcl.gmall</groupId>
+            <artifactId>gmall-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 </project>
