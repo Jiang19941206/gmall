@@ -1,0 +1,23 @@
+#使用sharding-jdbc实现读写分离
+dataSources:
+  db_master: !!com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    jdbcUrl: jdbc:mysql://192.168.163.128:3306/gmall?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: root
+  db_slave: !!com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    jdbcUrl: jdbc:mysql://192.168.163.129:3306/gmall?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: root
+masterSlaveRule:
+  name: db_ms
+  masterDataSourceName: db_master
+  slaveDataSourceNames: [db_slave]
+  ###注意，这份文档直接从官网复制的。!!后面是DataSource的实现类全类名不能省略。
+  ###多个slave加多份db_slaveXX配置即可，在slaveDataSourceNames列举这些slaver
+
+  #如何判定写数据是往主数据库写的，读数据是从数据取出来的
+  #   若插入一条数据，主从数据库都有则证明是往主数据库写的，因为数据只能从主库同步到从库
+  #   在从库中修改一条数据，查询这条数据，若数据与从库的数据一致则证明数据是在从库读取的
+

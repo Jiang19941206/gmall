@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiangcl.gmall.pms.mapper.UserInfoMapper">
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, login_name, nick_name, passwd, name, phone_num, email, head_img, user_level
+    </sql>
+
+    <insert id="insertUserInfo" parameterType="com.jiangcl.gmall.pms.entity.UserInfo">
+        insert into user_info(
+            id,
+            login_name,
+            nick_name,
+            passwd,
+            `name`,
+            phone_num,
+            email,
+            head_img,
+            user_level
+        )values (
+            #{userInfo.id},
+            #{userInfo.loginName},
+            #{userInfo.nickName},
+            #{userInfo.passwd},
+            #{userInfo.name},
+            #{userInfo.phoneNum},
+            #{userInfo.email},
+            #{userInfo.headImg},
+            #{userInfo.userLevel}
+        )
+    </insert>
+</mapper>
