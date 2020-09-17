@@ -11,7 +11,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class GmallWebApplication {
 
     public static void main(String[] args) {
-        log.info("web工程开始启动");
         SpringApplication.run(GmallWebApplication.class, args);
     }
 

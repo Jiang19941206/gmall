@@ -13,7 +13,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class GmallPmsApplication {
 
     public static void main(String[] args) {
-        log.info("pms工程开始启动");
         SpringApplication.run(GmallPmsApplication.class, args);
     }
 

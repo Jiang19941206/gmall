@@ -28,6 +28,7 @@ public class PageInfoServiceImpl implements PageInfoService {
         Page page = new Page<SpuImage>(currentPage,rowSize);
         IPage<SpuImage> iPage = pageInfoMapper.selectSpuImages(page, imgName);
         PageInfo<SpuImage> pageInfo = new PageInfo<>(iPage.getCurrent(), iPage.getPages(), iPage.getSize(), iPage.getTotal(), iPage.getRecords());
+        log.info("查询的结果是：{}",pageInfo);
         return pageInfo;
     }
 }
