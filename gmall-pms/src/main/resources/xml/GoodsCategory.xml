@@ -2,6 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jiangcl.gmall.pms.mapper.GoodsCategoryMapper">
 
+    <sql id="Base_column_list">
+        category_id,category_name,parent_id
+    </sql>
+
     <resultMap id="BaseResultMap" type="com.jiangcl.gmall.pms.entity.GoodsCategory">
         <id column="category_id" property="categoryId"/>
         <result column="category_name" property="categoryName"/>
@@ -15,6 +19,6 @@
     </resultMap>
 
     <select id="goodsCategoryList" resultMap="ExtendResultMap">
-        SELECT category_id,category_name,parent_id FROM category where parent_id = #{parentId}
+        SELECT <include refid="Base_column_list"/> FROM category where parent_id = #{parentId}
     </select>
 </mapper>
