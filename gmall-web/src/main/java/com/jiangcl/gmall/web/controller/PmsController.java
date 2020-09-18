@@ -2,7 +2,9 @@ package com.jiangcl.gmall.web.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.jiangcl.gmall.common.entity.PageInfo;
+import com.jiangcl.gmall.pms.entity.GoodsCategory;
 import com.jiangcl.gmall.pms.entity.SpuImage;
+import com.jiangcl.gmall.pms.service.GoodsCategoryService;
 import com.jiangcl.gmall.pms.service.PageInfoService;
 import com.jiangcl.gmall.web.entity.UserParam;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +29,8 @@ import java.util.Map;
 public class PmsController {
     @Reference
     private PageInfoService pageInfoService;
+    @Reference
+    private GoodsCategoryService goodsCategoryService;
 
     /**
      * @desc mybatis-plus分页查询demo
@@ -42,6 +46,19 @@ public class PmsController {
     public PageInfo<SpuImage> spuImagePages(String imgName, long page, long rowSize) {
         PageInfo<SpuImage> pageInfo = pageInfoService.pageInfo(imgName, page, rowSize);
         return pageInfo;
+    }
+
+    /**
+     * @desc 使用mybatis实现种类的递归查询
+     * @author jiangcl
+     * @date 2020/9/18
+     * @param
+     * @return java.util.List<com.jiangcl.gmall.pms.entity.GoodsCategory>
+     */
+    @GetMapping("/category/list")
+    @ResponseBody
+    public List<GoodsCategory> goodsCategoryList(){
+        return goodsCategoryService.goodsCategoryList();
     }
 
     /**

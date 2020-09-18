@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiangcl.gmall.pms.mapper.GoodsCategoryMapper">
+
+    <resultMap id="BaseResultMap" type="com.jiangcl.gmall.pms.entity.GoodsCategory">
+        <id column="category_id" property="categoryId"/>
+        <result column="category_name" property="categoryName"/>
+        <result column="parent_id" property="parentId"/>
+    </resultMap>
+
+    <!--递归查询-->
+    <resultMap id="ExtendResultMap" type="com.jiangcl.gmall.pms.entity.GoodsCategory"
+               extends="BaseResultMap">
+        <collection property="childrens" column="category_id" select="goodsCategoryList"/>
+    </resultMap>
+
+    <select id="goodsCategoryList" resultMap="ExtendResultMap">
+        SELECT category_id,category_name,parent_id FROM category where parent_id = #{parentId}
+    </select>
+</mapper>
