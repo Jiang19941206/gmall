@@ -1,4 +1,4 @@
-package com.jiangcl.gmall.web.config;
+package com.jiangcl.gmall.web.aop;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +38,7 @@ public class DataValidAspect {
      * @return java.lang.Object
      */
     @Around("execution(* com.jiangcl.gmall.web.controller.*.*(..))")
-    public Object validAround(ProceedingJoinPoint point){
+    public Object validAround(ProceedingJoinPoint point) throws Throwable {
         Object proceed = null;
         try {
             //获取方法的参数信息
@@ -70,10 +69,12 @@ public class DataValidAspect {
                     }
                 }
             }
-            //若参数校验通过，执行方法
+            //若参数校验通过，执行方法里面的逻辑
             proceed = point.proceed(point.getArgs());
         } catch (Throwable throwable) {
-            throwable.printStackTrace();
+            //throwable.printStackTrace();
+            //注意若要在其他地方处理异常，必须将异常抛出去
+            throw throwable;
         } finally {
             //若想执行后置通知则在此完善
         }
