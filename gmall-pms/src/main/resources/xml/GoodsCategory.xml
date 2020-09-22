@@ -21,4 +21,20 @@
     <select id="goodsCategoryList" resultMap="ExtendResultMap">
         SELECT <include refid="Base_column_list"/> FROM category where parent_id = #{parentId}
     </select>
+
+    <insert id="insertCategoryA">
+        INSERT INTO category(category_id,category_name,parent_id) VALUES(#{id},#{name},#{parentId})
+    </insert>
+
+    <insert id="insertCategoryB">
+        INSERT INTO base_catalog1(id,name) VALUES(#{id},#{name})
+    </insert>
+
+    <insert id="insertCategoryC">
+        INSERT INTO base_catalog2(id,name,catalog1_id) VALUES(#{id},#{name},#{parentId})
+    </insert>
+
+    <insert id="insertCategoryD">
+        INSERT INTO base_catalog3(id,name,catalog2_id) VALUES(#{id},#{name},#{parentId})
+    </insert>
 </mapper>

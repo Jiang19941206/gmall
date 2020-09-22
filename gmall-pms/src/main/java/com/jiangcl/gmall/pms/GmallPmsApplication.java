@@ -5,7 +5,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
+/**
+暴露代理对象注解，用于解决service中调用本类方式时，无法加上被调用方法自身的事物
+*/
+@EnableAspectJAutoProxy(exposeProxy = true)
 @Slf4j
 @EnableDubbo
 @MapperScan(basePackages = "com.jiangcl.gmall.pms.mapper")

@@ -99,4 +99,11 @@ public class PmsController {
         //int i = 1 / 0;
         return errorMap;
     }
+
+    @GetMapping("/insert")
+    @ResponseBody
+    public String insertData(){
+        goodsCategoryService.insertCategory();
+        return "success";
+    }
 }
