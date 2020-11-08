@@ -16,6 +16,7 @@ import java.util.List;
  */
 @Component
 public class RedissonUtil {
+
     @Autowired
     private RedissonClient redissonClient;
 
