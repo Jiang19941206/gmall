@@ -1,3 +1,6 @@
 /.idea/
 /gmall-common/target/
 /gmall-api/target/
+/gmall-api/gmall-api.iml
+/gmall-common/gmall-common.iml
+/gmall-parent.iml
